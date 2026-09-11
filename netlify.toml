@@ -1,0 +1,23 @@
+# PROJECT ONEKANA — Netlify configuration
+
+[build]
+  # Static site — no build step, publish the project root
+  publish = "."
+  command = ""
+
+# Long-term caching for images (they rarely change)
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache static assets
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
