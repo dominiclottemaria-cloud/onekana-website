@@ -159,12 +159,29 @@ body.poster-canvas {
     transform: scale(1.03);
 }
 
+/* Logo rendered via mask so it tints to the theme on dark surfaces */
+.logo-tint {
+    display: block;
+    background-color: var(--mint-pale);
+    -webkit-mask-image: url('../images/onekana-logo.png');
+    mask-image: url('../images/onekana-logo.png');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+    mask-position: left center;
+    transition: background-color 0.15s ease;
+}
+
 .nav-logo-img {
     height: 38px;
-    width: auto;
     max-width: 200px;
-    object-fit: contain;
-    display: block;
+    aspect-ratio: 1240 / 270;
+}
+
+.nav-logo:hover .logo-tint {
+    background-color: var(--pink-hot);
 }
 
 .nav-links {
@@ -1115,10 +1132,8 @@ body.poster-canvas {
 
 .footer-logo-img {
     height: 48px;
-    width: auto;
     max-width: 240px;
-    object-fit: contain;
-    display: block;
+    aspect-ratio: 1240 / 270;
 }
 
 .footer-tagline {
