@@ -1,6 +1,21 @@
 // PROJECT ONEKANA — Interactions & Micro-animations
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Shared body-scroll lock — reference counted so the mobile nav drawer
+    // and the athlete modal never clobber each other's lock/unlock if both
+    // happen to be toggled in the same session.
+    let scrollLockCount = 0;
+    const lockScroll = () => {
+        scrollLockCount += 1;
+        document.body.style.overflow = 'hidden';
+    };
+    const unlockScroll = () => {
+        scrollLockCount = Math.max(0, scrollLockCount - 1);
+        if (scrollLockCount === 0) {
+            document.body.style.overflow = '';
+        }
+    };
+
     // Scroll reveal observer
     const revealTargets = document.querySelectorAll(
         '.door-card, .action-tile, .val-card, .cta-band-title, .why-huge-title, .why-callout, .paths-heading, .actions-heading, .values-heading, .manifesto-lead, .manifesto-quote, .aud-row, .passport-card'
@@ -69,22 +84,27 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', syncNavHeight);
         window.addEventListener('orientationchange', syncNavHeight);
 
+        let menuOpen = false;
+
         const closeMenu = () => {
+            if (!menuOpen) return;
+            menuOpen = false;
             navLinks.classList.remove('open');
             burger.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
+            unlockScroll();
         };
 
         const openMenu = () => {
+            if (menuOpen) return;
+            menuOpen = true;
             syncNavHeight();
             navLinks.classList.add('open');
             burger.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden';
+            lockScroll();
         };
 
         burger.addEventListener('click', () => {
-            const isOpen = navLinks.classList.contains('open');
-            isOpen ? closeMenu() : openMenu();
+            menuOpen ? closeMenu() : openMenu();
         });
 
         // Close after tapping any link inside the drawer
@@ -214,6 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cta: document.getElementById('athCta')
         };
 
+        let modalOpen = false;
+
         const openModal = (key) => {
             const a = ATHLETES[key];
             if (!a) return;
@@ -234,13 +256,16 @@ document.addEventListener('DOMContentLoaded', () => {
             fields.cta.href = `mailto:contact@onekana.run?subject=ONEKANA%20Athlete%20—%20${encodeURIComponent(a.name)}`;
             overlay.classList.add('open');
             overlay.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
+            modalOpen = true;
+            lockScroll();
         };
 
         const closeModal = () => {
+            if (!modalOpen) return;
+            modalOpen = false;
             overlay.classList.remove('open');
             overlay.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
+            unlockScroll();
         };
 
         document.querySelectorAll('.passport-card').forEach(card => {
