@@ -839,6 +839,7 @@ body.poster-canvas {
     display: flex;
     flex-direction: column;
     min-height: 300px;
+    text-decoration: none;
     box-shadow: 6px 6px 0 var(--pine-darkest);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -1368,6 +1369,354 @@ body.poster-canvas {
 }
 
 /* ===================================================================
+   PASSPORT PAGE — polaroid athlete cards + detail modal
+   =================================================================== */
+
+.passport-section {
+    background-color: var(--pine-surface);
+    border-bottom: 2px solid var(--pine-border);
+}
+
+.passport-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+/* Polaroid-style card: thick colored frame, header, photo, footer strip */
+.passport-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem 1.4rem 0;
+    border: 3px solid var(--pine-darkest);
+    border-radius: 26px;
+    box-shadow: 8px 8px 0 var(--pine-darkest);
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.passport-card:hover {
+    transform: translate(-4px, -4px) rotate(0deg) !important;
+    box-shadow: 12px 12px 0 var(--pine-darkest);
+}
+
+.tilt-l { transform: rotate(-1.6deg); }
+.tilt-r { transform: rotate(1.6deg); }
+
+/* Frame colorways */
+.frame-pink {
+    background-color: var(--pink-hot);
+    color: var(--white);
+}
+
+.frame-lime {
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+}
+
+.frame-mint {
+    background-color: var(--mint-bright);
+    color: var(--pine-darkest);
+}
+
+.frame-soft {
+    background-color: var(--pink-soft);
+    color: var(--pine-darkest);
+}
+
+.frame-pine {
+    background-color: var(--pine-card);
+    color: var(--mint-pale);
+    border-color: var(--mint-bright);
+}
+
+.pc-head {
+    padding: 0.4rem 0.3rem 1rem;
+}
+
+.pc-head-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.6rem;
+}
+
+.pc-idx {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.pc-brand {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+}
+
+.pc-name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.pc-photo {
+    border: 3px solid var(--pine-darkest);
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3.4;
+    background-color: var(--pine-darkest);
+}
+
+.pc-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.passport-card:hover .pc-photo img {
+    transform: scale(1.05);
+}
+
+.pc-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0.3rem 1.2rem;
+    font-family: var(--font-mono);
+}
+
+.pc-dist {
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+}
+
+.pc-meta {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+    text-align: right;
+}
+
+.passport-note {
+    margin-top: 3rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--mint-bright);
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+/* ---------- Athlete detail modal ---------- */
+
+.ath-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgba(11, 25, 17, 0.88);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.ath-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ath-modal {
+    position: relative;
+    width: 100%;
+    max-width: 1080px;
+    max-height: 88vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    background-color: var(--pine-surface);
+    border: 3px solid var(--lime-acid);
+    border-radius: 20px;
+    box-shadow: 10px 10px 0 var(--pine-darkest);
+    transform: translateY(20px);
+    transition: transform 0.25s ease;
+}
+
+.ath-overlay.open .ath-modal {
+    transform: translateY(0);
+}
+
+.ath-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--pine-darkest);
+    background-color: var(--pink-hot);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--pine-darkest);
+    transition: transform 0.15s ease;
+}
+
+.ath-close:hover {
+    transform: rotate(90deg);
+}
+
+.ath-photo-col {
+    position: relative;
+    min-height: 320px;
+    border-right: 3px solid var(--pine-darkest);
+}
+
+.ath-photo-col img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ath-dist-badge {
+    position: absolute;
+    left: 1.2rem;
+    bottom: 1.2rem;
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--pine-darkest);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 var(--pine-darkest);
+    transform: rotate(-3deg);
+}
+
+.ath-info-col {
+    padding: 2.6rem 2.6rem 2.8rem;
+}
+
+.ath-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--lime-acid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.ath-name {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0.6rem 0 1.8rem;
+    text-transform: uppercase;
+}
+
+.ath-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+}
+
+.ath-stat {
+    background-color: var(--pine-deep);
+    border: 1px solid var(--pine-border);
+    border-radius: 10px;
+    padding: 0.8rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ath-stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--mint-bright);
+    letter-spacing: 0.08em;
+}
+
+.ath-stat-val {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.ath-bio {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.6rem;
+}
+
+.ath-block {
+    margin-bottom: 1.6rem;
+}
+
+.ath-block-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--pink-hot);
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.ath-block p {
+    font-size: 0.95rem;
+    color: var(--mint-pale);
+    line-height: 1.55;
+}
+
+.ath-needs {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.ath-needs li {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--pine-darkest);
+    background-color: var(--mint-bright);
+    border: 1px solid var(--pine-darkest);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+}
+
+.ath-cta {
+    font-size: 1rem;
+    padding: 0.9rem 2rem;
+}
+
+/* ===================================================================
    RESPONSIVE BREAKPOINTS
    =================================================================== */
 
@@ -1380,6 +1729,18 @@ body.poster-canvas {
     }
     .values-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .passport-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ath-modal {
+        grid-template-columns: 1fr;
+        max-height: 92vh;
+    }
+    .ath-photo-col {
+        min-height: 260px;
+        border-right: none;
+        border-bottom: 3px solid var(--pine-darkest);
     }
     .why-huge-title {
         position: static;
@@ -1457,6 +1818,19 @@ body.poster-canvas {
         width: 52px;
         height: 52px;
         font-size: 1.3rem;
+    }
+    .passport-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .passport-card {
+        transform: none !important;
+    }
+    .ath-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ath-info-col {
+        padding: 1.8rem 1.4rem 2.2rem;
     }
     .footer-bottom-bar {
         flex-direction: column;

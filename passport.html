@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE PASSPORT — PROJECT ONEKANA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="poster-canvas">
+
+    <!-- ============ TOP SPECIMEN STRIP ============ -->
+    <div class="top-spec-bar">
+        <div class="spec-left">
+            <span class="spec-brand">PROJECT ONEKANA // THE PASSPORT</span>
+        </div>
+        <div class="spec-right">
+            <span class="spec-coords">0°17'11"S 36°49'02"E</span>
+            <a href="index.html" class="spec-arrow-link" aria-label="Back to home">
+                <svg class="spec-arrow" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="8" y1="40" x2="40" y2="8"></line>
+                    <polyline points="16,8 40,8 40,32"></polyline>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- ============ NAV ============ -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo" aria-label="ONEKANA Home">
+            <img src="images/onekana-logo.png" alt="ONEKANA" class="nav-logo-img">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#why">Why</a></li>
+            <li><a href="index.html#paths">Join</a></li>
+            <li><a href="index.html#actions">Talent</a></li>
+            <li><a href="index.html#values">Values</a></li>
+            <li><a href="passport.html">Passport</a></li>
+        </ul>
+        <a href="index.html#cta" class="nav-cta">SAY YES <span class="arrow-mini">↗</span></a>
+    </nav>
+    <div class="nav-strip" aria-hidden="true"></div>
+
+    <!-- ============ PASSPORT HERO ============ -->
+    <header class="aud-hero" id="top">
+        <div class="aud-hero-bg" style="background-image: url('images/athlete-steeple.jpg');"></div>
+        <div class="aud-hero-overlay"></div>
+
+        <div class="aud-hero-content">
+            <span class="sec-pill pill-lime">ONEKANA PASSPORT — UNSEEN ATHLETES</span>
+
+            <h1 class="aud-hero-title">
+                MEET THE <span class="aud-hero-star">✳</span><br>
+                <em>UNSEEN.</em>
+            </h1>
+
+            <p class="aud-hero-sub">
+                Six athletes. Six journeys. Introduced before the world knows where to look — tap a card for the full picture.
+            </p>
+
+            <div class="hero-clean-ctas">
+                <a href="#athletes" class="btn btn-pink-hero">
+                    <span>VIEW THE ATHLETES</span>
+                    <span class="cta-arrow">↓</span>
+                </a>
+                <a href="scouts-partners.html" class="btn btn-mint-hero">
+                    <span>FOR SCOUTS &amp; PARTNERS</span>
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ MARQUEE STRIP ============ -->
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span>UNSEEN → INTRODUCED → SUPPORTED ✳ COLLECT THE PASSPORT ✳ FOLLOW THE JOURNEY ✳ </span>
+            <span>UNSEEN → INTRODUCED → SUPPORTED ✳ COLLECT THE PASSPORT ✳ FOLLOW THE JOURNEY ✳ </span>
+        </div>
+    </div>
+
+    <!-- ============ ATHLETE POLAROID GRID ============ -->
+    <section class="passport-section" id="athletes">
+        <div class="section-container">
+            <div class="sec-label-row">
+                <span class="sec-pill pill-pink">THE ATHLETES</span>
+                <span class="sec-meta-line">CLICK A CARD FOR THE FULL PROFILE</span>
+            </div>
+
+            <div class="passport-grid">
+
+                <!-- Card 01 -->
+                <button class="passport-card frame-pink tilt-l" data-athlete="daniel" aria-label="Open profile: Daniel K.">
+                    <div class="pc-head">
+                        <div class="pc-head-top">
+                            <span class="pc-idx">01</span>
+                            <span class="pc-brand">ONEKANA ✳ PASSPORT</span>
+                        </div>
+                        <span class="pc-name">DANIEL K.</span>
+                    </div>
+                    <div class="pc-photo">
+                        <img src="images/runners-group.jpg" alt="Marathon pack training at dawn" loading="lazy">
+                    </div>
+                    <div class="pc-foot">
+                        <span class="pc-dist">MARATHON</span>
+                        <span class="pc-meta">ITEN, KEN · 2:11:48</span>
+                    </div>
+                </button>
+
+                <!-- Card 02 -->
+                <button class="passport-card frame-lime tilt-r" data-athlete="mercy" aria-label="Open profile: Mercy C.">
+                    <div class="pc-head">
+                        <div class="pc-head-top">
+                            <span class="pc-idx">02</span>
+                            <span class="pc-brand">ONEKANA ✳ PASSPORT</span>
+                        </div>
+                        <span class="pc-name">MERCY C.</span>
+                    </div>
+                    <div class="pc-photo">
+                        <img src="images/athlete-xc.jpg" alt="Cross country runners mid-race" loading="lazy">
+                    </div>
+                    <div class="pc-foot">
+                        <span class="pc-dist">10,000M</span>
+                        <span class="pc-meta">KAPCHORWA, UGA · 32:14</span>
+                    </div>
+                </button>
+
+                <!-- Card 03 -->
+                <button class="passport-card frame-mint tilt-l" data-athlete="samuel" aria-label="Open profile: Samuel K.">
+                    <div class="pc-head">
+                        <div class="pc-head-top">
+                            <span class="pc-idx">03</span>
+                            <span class="pc-brand">ONEKANA ✳ PASSPORT</span>
+                        </div>
+                        <span class="pc-name">SAMUEL K.</span>
+                    </div>
+                    <div class="pc-photo">
+                        <img src="images/athlete-pack.jpg" alt="Lead pack on the road" loading="lazy">
+                    </div>
+                    <div class="pc-foot">
+                        <span class="pc-dist">HALF MARATHON</span>
+                        <span class="pc-meta">ELDORET, KEN · 61:20</span>
+                    </div>
+                </button>
+
+                <!-- Card 04 -->
+                <button class="passport-card frame-soft tilt-r" data-athlete="faith" aria-label="Open profile: Faith N.">
+                    <div class="pc-head">
+                        <div class="pc-head-top">
+                            <span class="pc-idx">04</span>
+                            <span class="pc-brand">ONEKANA ✳ PASSPORT</span>
+                        </div>
+                        <span class="pc-name">FAITH N.</span>
+                    </div>
+                    <div class="pc-photo">
+                        <img src="images/athlete-trail.jpg" alt="Trail race through the hills" loading="lazy">
+                    </div>
+                    <div class="pc-foot">
+                        <span class="pc-dist">5,000M</span>
+                        <span class="pc-meta">KAPCHORWA, UGA · 15:42</span>
+                    </div>
+                </button>
+
+                <!-- Card 05 -->
+                <button class="passport-card frame-pine tilt-l" data-athlete="vincent" aria-label="Open profile: Vincent K.">
+                    <div class="pc-head">
+                        <div class="pc-head-top">
+                            <span class="pc-idx">05</span>
+                            <span class="pc-brand">ONEKANA ✳ PASSPORT</span>
+                        </div>
+                        <span class="pc-name">VINCENT K.</span>
+                    </div>
+                    <div class="pc-photo">
+                        <img src="images/athlete-steeple.jpg" alt="Steeplechase water jump" loading="lazy">
+                    </div>
+                    <div class="pc-foot">
+                        <span class="pc-dist">3,000M SC</span>
+                        <span class="pc-meta">ITEN, KEN · 8:24</span>
+                    </div>
+                </button>
+
+                <!-- Card 06 -->
+                <button class="passport-card frame-pink tilt-r" data-athlete="joyce" aria-label="Open profile: Joyce A.">
+                    <div class="pc-head">
+                        <div class="pc-head-top">
+                            <span class="pc-idx">06</span>
+                            <span class="pc-brand">ONEKANA ✳ PASSPORT</span>
+                        </div>
+                        <span class="pc-name">JOYCE A.</span>
+                    </div>
+                    <div class="pc-photo">
+                        <img src="images/kipchoge-berlin.jpg" alt="Training group at full stride" loading="lazy">
+                    </div>
+                    <div class="pc-foot">
+                        <span class="pc-dist">MARATHON</span>
+                        <span class="pc-meta">MBALE, UGA · 2:29:35</span>
+                    </div>
+                </button>
+
+            </div>
+
+            <p class="passport-note">✳ Sample profiles shown — athlete introductions launch soon.</p>
+        </div>
+    </section>
+
+    <!-- ============ CTA BAND ============ -->
+    <section class="cta-section" id="cta">
+        <div class="cta-band">
+            <div class="cta-stars" aria-hidden="true">
+                <span>✳</span><span>✳</span><span>✳</span><span>✳</span><span>✳</span>
+            </div>
+
+            <span class="sec-pill pill-pink cta-pill">ONEKANA PASSPORT</span>
+
+            <h2 class="cta-band-title">
+                COLLECT THE<br>
+                <em>PASSPORT.</em>
+            </h2>
+
+            <p class="cta-band-sub">
+                Unlock athlete stories, recurring activations and documented impact.
+            </p>
+
+            <a href="mailto:contact@onekana.run?subject=ONEKANA%20Passport" class="cta-band-btn">
+                Start the conversation →
+            </a>
+
+            <a href="index.html#paths" class="door-switch">Back to the two doors →</a>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main-row">
+                <div class="footer-brand-col">
+                    <div class="footer-big-logo">
+                        <img src="images/onekana-logo.png" alt="ONEKANA" class="footer-logo-img">
+                    </div>
+                    <p class="footer-tagline">Making East Africa's unseen running talent, communities and stories visible to the world.</p>
+                    <span class="footer-badge badge-lime">WHAT IS UNSEEN IS NOT ABSENT</span>
+                </div>
+
+                <div class="footer-nav-col">
+                    <span class="footer-col-title">NAVIGATION</span>
+                    <ul>
+                        <li><a href="index.html">← Back to home</a></li>
+                        <li><a href="index.html#why">01 Why We Exist</a></li>
+                        <li><a href="index.html#paths">02 Two Doors</a></li>
+                        <li><a href="running-friends.html">→ For Running Friends</a></li>
+                        <li><a href="scouts-partners.html">→ For Scouts &amp; Sponsors</a></li>
+                        <li><a href="index.html#values">04 Core Values</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <span class="copy-text">© 2026 PROJECT ONEKANA. ALL RIGHTS RESERVED.</span>
+                <a href="#top" class="back-to-top">BACK TO TOP ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ ATHLETE DETAIL MODAL ============ -->
+    <div class="ath-overlay" id="athOverlay" aria-hidden="true">
+        <div class="ath-modal" role="dialog" aria-modal="true" aria-labelledby="athName">
+            <button class="ath-close" id="athClose" aria-label="Close profile">✕</button>
+
+            <div class="ath-photo-col">
+                <img id="athImg" src="" alt="">
+                <span class="ath-dist-badge" id="athDist"></span>
+            </div>
+
+            <div class="ath-info-col">
+                <span class="ath-tag" id="athTag"></span>
+                <h3 class="ath-name" id="athName"></h3>
+
+                <div class="ath-stats">
+                    <div class="ath-stat">
+                        <span class="ath-stat-label">PERSONAL BEST</span>
+                        <span class="ath-stat-val" id="athPb"></span>
+                    </div>
+                    <div class="ath-stat">
+                        <span class="ath-stat-label">AGE</span>
+                        <span class="ath-stat-val" id="athAge"></span>
+                    </div>
+                    <div class="ath-stat">
+                        <span class="ath-stat-label">ALTITUDE BASE</span>
+                        <span class="ath-stat-val" id="athAlt"></span>
+                    </div>
+                    <div class="ath-stat">
+                        <span class="ath-stat-label">WEEKLY VOLUME</span>
+                        <span class="ath-stat-val" id="athKm"></span>
+                    </div>
+                    <div class="ath-stat">
+                        <span class="ath-stat-label">TRAINING GROUP</span>
+                        <span class="ath-stat-val" id="athGroup"></span>
+                    </div>
+                    <div class="ath-stat">
+                        <span class="ath-stat-label">STATUS</span>
+                        <span class="ath-stat-val" id="athStatus"></span>
+                    </div>
+                </div>
+
+                <p class="ath-bio" id="athBio"></p>
+
+                <div class="ath-block">
+                    <span class="ath-block-title">SCOUT NOTES</span>
+                    <p id="athNotes"></p>
+                </div>
+
+                <div class="ath-block">
+                    <span class="ath-block-title">WHAT THEY NEED</span>
+                    <ul class="ath-needs" id="athNeeds"></ul>
+                </div>
+
+                <a href="#" class="cta-band-btn ath-cta" id="athCta">Request full profile →</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
