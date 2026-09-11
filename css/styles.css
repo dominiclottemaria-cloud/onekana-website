@@ -1,0 +1,1477 @@
+/* ===================================================================
+   PROJECT ONEKANA — 'NOW. BREAKS' DESIGN SYSTEM
+   Color Palette: Deep Forest Pine, Hot Punch Pink, Mint, Acid Lime
+   Layout: bold poster sections (see reference screenshots)
+   =================================================================== */
+
+:root {
+    /* Palette from the NOW. BREAKS specimen */
+    --pine-deep: #132B1E;       /* Canvas dark forest green */
+    --pine-surface: #1B3B2B;    /* Surface container dark green */
+    --pine-card: #224734;       /* Card mid green */
+    --pine-border: #2E6347;     /* Structured grid line border */
+    --pine-darkest: #0B1911;    /* Deep contrast base */
+
+    --pink-hot: #FF4D80;        /* Signature 'NOW. BREAKS' punch pink */
+    --pink-soft: #FFA3BE;       /* Soft pink tint */
+    --pink-dark: #C92656;       /* Deep pink for active states */
+
+    --mint-bright: #A4DCB6;     /* Pastel pistachio / mint */
+    --mint-pale: #D9F2E2;       /* Ultra-soft mint highlight */
+    --mint-border: #7ABF92;     /* Mint border outline */
+
+    --lime-acid: #D4FF14;       /* Electric neon acid lime */
+    --lime-dark: #98BD00;       /* Lime shadow */
+
+    --white: #FFFFFF;
+    --text-muted: rgba(217, 242, 226, 0.75);
+
+    /* Fonts */
+    --font-display: 'Archivo Black', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+
+    /* Borders & Shadows */
+    --border-dark: 2px solid var(--pine-border);
+    --border-mint: 2px solid var(--mint-bright);
+    --border-pink: 2px solid var(--pink-hot);
+    --border-lime: 2px solid var(--lime-acid);
+    --shadow-solid: 6px 6px 0px var(--pine-darkest);
+    --shadow-pink: 6px 6px 0px var(--pink-hot);
+    --shadow-lime: 5px 5px 0px var(--lime-acid);
+}
+
+/* Base reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--pine-deep);
+}
+
+body.poster-canvas {
+    font-family: var(--font-body);
+    background-color: var(--pine-deep);
+    color: var(--mint-pale);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    background-color: var(--pink-hot);
+    color: var(--white);
+}
+
+/* ===================================================================
+   TOP SPEC BAR (NOW. BREAKS META HEADER)
+   =================================================================== */
+
+.top-spec-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2.5rem;
+    background-color: var(--pine-surface);
+    border-bottom: 2px solid var(--pine-border);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--mint-bright);
+}
+
+.spec-left {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.spec-brand {
+    font-weight: 700;
+    color: var(--white);
+}
+
+.spec-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.spec-coords {
+    color: var(--lime-acid);
+}
+
+.spec-arrow-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--lime-acid);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.spec-arrow {
+    width: 28px;
+    height: 28px;
+}
+
+.spec-arrow-link:hover {
+    transform: translate(3px, -3px);
+    color: var(--pink-hot);
+}
+
+/* ===================================================================
+   NAVIGATION
+   =================================================================== */
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background-color: rgba(19, 43, 30, 0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--pine-border);
+}
+
+/* Slim poster strip directly under the nav (like the reference bar) */
+.nav-strip {
+    height: 14px;
+    background-color: var(--pink-hot);
+    border-bottom: 2px solid var(--pine-darkest);
+}
+
+.nav-logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: transform 0.15s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.03);
+}
+
+.nav-logo-img {
+    height: 38px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--mint-pale);
+    letter-spacing: 0.05em;
+    transition: color 0.15s ease;
+}
+
+.nav-links a:hover {
+    color: var(--pink-hot);
+}
+
+/* Acid-lime pill CTA (the 'Say yes' button) */
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+    padding: 0.65rem 1.4rem;
+    border-radius: 999px;
+    border: 2px solid var(--pine-darkest);
+    box-shadow: 3px 3px 0 var(--pine-darkest);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.nav-cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--pink-hot);
+    background-color: var(--pink-hot);
+    color: var(--white);
+}
+
+/* ===================================================================
+   HERO POSTER LOCKUP (STREAMLINED & EASY ON THE EYE)
+   =================================================================== */
+
+.hero {
+    padding: 5rem 2.5rem 6.5rem;
+    position: relative;
+    border-bottom: 2px solid var(--pine-border);
+    background: radial-gradient(circle at 85% 15%, rgba(212, 255, 20, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(255, 77, 128, 0.08) 0%, transparent 45%),
+                var(--pine-deep);
+}
+
+.hero-container {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.hero-title-wrap {
+    margin-bottom: 0.5rem;
+}
+
+.hero-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+}
+
+.hero-title-main {
+    font-family: var(--font-display);
+    font-size: clamp(4.5rem, 15vw, 11rem);
+    line-height: 0.88;
+    color: var(--pink-hot);
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.hero-title-deco {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    color: var(--pink-hot);
+    line-height: 1;
+    transform: translateY(-15%);
+}
+
+.hero-title-sub {
+    font-family: var(--font-display);
+    font-size: clamp(4.5rem, 15vw, 11rem);
+    line-height: 0.88;
+    color: var(--pink-hot);
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+/* Subtitle - clean, comfortable line-length, easy on the eye */
+.hero-clean-sub {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-weight: 500;
+    color: var(--mint-pale);
+    max-width: 820px;
+    line-height: 1.55;
+    margin: 1.6rem 0 2.4rem;
+}
+
+/* Yellow discovery block and ecosystem badge */
+.hero-discovery-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.8rem;
+}
+
+.block-yellow-discovery {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+    font-family: var(--font-mono);
+    font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+    font-weight: 700;
+    padding: 0.75rem 1.35rem;
+    border-radius: 8px;
+    border: 2px solid var(--pine-darkest);
+    box-shadow: 4px 4px 0 var(--pine-darkest);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: transform 0.15s ease;
+}
+
+.block-yellow-discovery:hover {
+    transform: translateY(-2px);
+}
+
+.discovery-star {
+    font-size: 1.15rem;
+    line-height: 1;
+    color: var(--pink-hot);
+}
+
+.badge-ecosystem {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--pine-surface);
+    color: var(--mint-bright);
+    border: 2px solid var(--pine-border);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0 var(--pine-darkest);
+}
+
+/* Hero CTA action buttons */
+.hero-clean-ctas {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-pink-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--pink-hot);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    padding: 1.1rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 2px solid var(--pink-hot);
+    box-shadow: 4px 4px 0 var(--pine-darkest);
+    letter-spacing: 0.01em;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-pink-hero:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--lime-acid);
+}
+
+.btn-mint-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: transparent;
+    color: var(--mint-bright);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    padding: 1.1rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 2px solid var(--mint-bright);
+    box-shadow: 4px 4px 0 var(--pine-darkest);
+    letter-spacing: 0.01em;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+}
+
+.btn-mint-hero:hover {
+    transform: translate(-3px, -3px);
+    background-color: var(--mint-bright);
+    color: var(--pine-darkest);
+    box-shadow: 6px 6px 0 var(--pink-hot);
+}
+
+.cta-arrow {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: transform 0.15s ease;
+}
+
+.btn-pink-hero:hover .cta-arrow,
+.btn-mint-hero:hover .cta-arrow {
+    transform: translateX(3px);
+}
+
+/* ===================================================================
+   MARQUEE
+   =================================================================== */
+
+.marquee {
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+    overflow: hidden;
+    padding: 0.85rem 0;
+    border-top: 2px solid var(--pine-darkest);
+    border-bottom: 2px solid var(--pine-darkest);
+    white-space: nowrap;
+}
+
+.marquee-track {
+    display: flex;
+    animation: marquee 24s linear infinite;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+}
+
+.marquee-track span {
+    padding-right: 2rem;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ===================================================================
+   SECTION UTILITIES — poster pills & italic accents
+   =================================================================== */
+
+.section-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 6rem 2.5rem;
+}
+
+.sec-label-row {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+
+.sec-label-row.center {
+    justify-content: center;
+}
+
+/* Chunky pill labels (01 — WHY WE EXIST etc.) */
+.sec-pill {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.7rem 1.6rem;
+    border-radius: 999px;
+    border: 2px solid var(--pine-darkest);
+    box-shadow: 4px 4px 0 var(--pine-darkest);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.pill-pink {
+    background-color: var(--pink-hot);
+    color: var(--white);
+}
+
+.pill-lime {
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+}
+
+.pill-mint {
+    background-color: var(--mint-bright);
+    color: var(--pine-darkest);
+}
+
+/* Small badge variant kept for footer sticker */
+.badge-lime {
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+}
+
+.text-pink {
+    color: var(--pink-hot);
+}
+
+.text-mint {
+    color: var(--mint-bright);
+}
+
+.text-dark {
+    color: var(--pine-darkest);
+}
+
+.text-pink-italic {
+    color: var(--pink-hot);
+    font-style: italic;
+}
+
+.text-lime-italic {
+    color: var(--lime-acid);
+    font-style: italic;
+}
+
+/* ===================================================================
+   01: WHY WE EXIST — split heading + copy + callout
+   =================================================================== */
+
+.why-section {
+    border-bottom: 2px solid var(--pine-border);
+    background-color: var(--pine-surface);
+}
+
+.why-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+.why-huge-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    text-transform: uppercase;
+    position: sticky;
+    top: 7rem;
+}
+
+.why-content-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    padding-top: 0.5rem;
+}
+
+.why-para {
+    font-size: 1.12rem;
+    color: var(--mint-pale);
+    line-height: 1.65;
+}
+
+.why-para strong {
+    color: var(--pink-hot);
+    font-style: italic;
+}
+
+/* Bordered callout box (If ONEKANA succeeds...) */
+.why-callout {
+    background-color: var(--mint-pale);
+    border: 2px solid var(--pine-darkest);
+    border-radius: 16px;
+    box-shadow: 6px 6px 0 var(--pine-darkest);
+    padding: 1.8rem 2rem;
+    margin-top: 0.6rem;
+}
+
+.why-callout p {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--pine-darkest);
+    line-height: 1.55;
+}
+
+/* ===================================================================
+   02: TWO DOORS — saturated pink band, sticker badges
+   =================================================================== */
+
+.paths-section {
+    background-color: var(--pink-hot);
+    border-top: 2px solid var(--pine-darkest);
+    border-bottom: 2px solid var(--pine-darkest);
+}
+
+.paths-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+    text-align: center;
+    color: var(--pine-darkest);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.paths-subheading {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 5rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--pine-darkest);
+}
+
+.doors-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+}
+
+.door-card {
+    border-radius: 22px;
+    border: 3px solid var(--pine-darkest);
+    padding: 3.2rem 2.8rem 2.8rem;
+    position: relative;
+    box-shadow: 8px 8px 0 var(--pine-darkest);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.door-card:hover {
+    transform: translateY(-6px);
+}
+
+/* Door 1 — mint card, dark ink */
+.door-left {
+    background-color: var(--mint-bright);
+    color: var(--pine-darkest);
+}
+
+/* Door 2 — dark green card, light ink */
+.door-right {
+    background-color: var(--pine-deep);
+    color: var(--mint-pale);
+}
+
+/* Number badge sticking out of the top-right corner */
+.door-badge {
+    position: absolute;
+    top: -22px;
+    right: 2.4rem;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    padding: 0.55rem 1.05rem;
+    border-radius: 10px;
+    border: 2px solid var(--pine-darkest);
+    box-shadow: 4px 4px 0 var(--pine-darkest);
+    transform: rotate(4deg);
+    line-height: 1;
+}
+
+.badge-lime-solid {
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+}
+
+.badge-pink-solid {
+    background-color: var(--pink-hot);
+    color: var(--white);
+}
+
+.door-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.9rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+}
+
+.door-left .door-title {
+    color: var(--pine-darkest);
+}
+
+.door-right .door-title {
+    color: var(--white);
+}
+
+.door-question {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.45;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    border-left: 3px solid currentColor;
+}
+
+.door-left .door-question {
+    color: var(--pine-card);
+    border-left-color: var(--pink-hot);
+}
+
+.door-right .door-question {
+    color: var(--mint-bright);
+    border-left-color: var(--pink-hot);
+}
+
+/* Checklist with divider rules */
+.door-checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    font-size: 0.97rem;
+    line-height: 1.5;
+    padding: 0.95rem 0;
+    border-bottom: 1px dashed;
+}
+
+.check-item:first-child {
+    padding-top: 0;
+}
+
+.check-item:last-child {
+    border-bottom: none;
+}
+
+.door-left .check-item {
+    border-bottom-color: rgba(11, 25, 17, 0.25);
+    color: var(--pine-darkest);
+}
+
+.door-right .check-item {
+    border-bottom-color: rgba(217, 242, 226, 0.2);
+    color: var(--mint-pale);
+}
+
+.check-icon {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    flex-shrink: 0;
+}
+
+.door-left .check-icon {
+    color: var(--pink-dark);
+}
+
+.door-right .check-icon {
+    color: var(--lime-acid);
+}
+
+.door-feeling {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 2rem;
+    margin-top: auto;
+}
+
+.door-left .door-feeling {
+    color: var(--pine-darkest);
+}
+
+.door-right .door-feeling {
+    color: var(--white);
+}
+
+/* Dark pill CTA inside each door */
+.door-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    border: 2px solid var(--pine-darkest);
+    letter-spacing: 0.01em;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+}
+
+.btn-pill-dark {
+    background-color: var(--pine-darkest);
+    color: var(--white);
+    box-shadow: 4px 4px 0 rgba(11, 25, 17, 0.45);
+    width: fit-content;
+}
+
+.door-right .btn-pill-dark {
+    background-color: var(--mint-pale);
+    color: var(--pine-darkest);
+    border-color: var(--pine-darkest);
+    box-shadow: 4px 4px 0 var(--pink-hot);
+}
+
+.btn-pill-dark:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--pink-hot);
+}
+
+.door-right .btn-pill-dark:hover {
+    box-shadow: 6px 6px 0 var(--lime-acid);
+}
+
+/* ===================================================================
+   03: MAKE IT REAL — solid poster tiles
+   =================================================================== */
+
+.actions-section {
+    background-color: var(--pine-surface);
+    border-bottom: 2px solid var(--pine-border);
+}
+
+.actions-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+}
+
+.actions-poster-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.6rem;
+}
+
+.action-tile {
+    border-radius: 20px;
+    border: 3px solid var(--pine-darkest);
+    padding: 2.2rem 1.9rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    box-shadow: 6px 6px 0 var(--pine-darkest);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action-tile:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--pine-darkest);
+}
+
+.action-idx {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 2.4rem;
+}
+
+.action-tile-title {
+    font-family: var(--font-heading);
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.9rem;
+}
+
+.action-tile-text {
+    font-size: 0.96rem;
+    line-height: 1.5;
+}
+
+.tile-pink {
+    background-color: var(--pink-hot);
+    color: var(--white);
+}
+
+.tile-lime {
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+}
+
+.tile-softpink {
+    background-color: var(--pink-soft);
+    color: var(--pine-darkest);
+}
+
+/* ===================================================================
+   04: VALUES SECTION
+   =================================================================== */
+
+.values-section {
+    background-color: var(--pine-deep);
+    border-bottom: 2px solid var(--pine-border);
+}
+
+.values-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-bottom: 3.5rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}
+
+.val-card {
+    background-color: var(--pine-surface);
+    border: 2px solid var(--pine-border);
+    border-radius: 14px;
+    padding: 2.2rem 1.8rem;
+    box-shadow: 4px 4px 0 var(--pine-darkest);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.val-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--lime-acid);
+}
+
+.val-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.val-num {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--lime-acid);
+}
+
+.val-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pink-hot);
+}
+
+.val-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.8rem;
+}
+
+.val-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
+/* ===================================================================
+   MANIFESTO STATEMENT BAND
+   =================================================================== */
+
+.manifesto-section {
+    background-color: var(--pine-darkest);
+    padding: 7.5rem 2.5rem 6.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.manifesto-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.manifesto-lead {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 500;
+    color: var(--mint-bright);
+    margin-bottom: 2.6rem;
+}
+
+.manifesto-lead em {
+    color: var(--pink-hot);
+    font-style: italic;
+}
+
+.manifesto-quote {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6.5vw, 5.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+/* Acid-lime highlight block on BEFORE */
+.manifesto-highlight {
+    display: inline-block;
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+    padding: 0 0.35em;
+    transform: rotate(-1.5deg);
+}
+
+/* ===================================================================
+   CTA BAND — 'READY TO SAY YES?'
+   =================================================================== */
+
+.cta-section {
+    background-color: var(--pink-dark);
+    border-top: 2px solid var(--pine-darkest);
+    border-bottom: 2px solid var(--pine-darkest);
+}
+
+.cta-band {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 2.5rem 8rem;
+    text-align: center;
+}
+
+/* Faint decorative asterisks across the top */
+.cta-stars {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    color: rgba(217, 242, 226, 0.35);
+    font-size: 1.3rem;
+    margin-bottom: 3.5rem;
+}
+
+.cta-pill {
+    transform: rotate(-2.5deg);
+    margin-bottom: 2.8rem;
+}
+
+.cta-band-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.4rem, 9vw, 7.6rem);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    color: var(--mint-pale);
+    text-transform: uppercase;
+    text-shadow: 6px 6px 0 var(--pine-darkest);
+    margin-bottom: 2.2rem;
+}
+
+.cta-band-title em {
+    color: var(--lime-acid);
+    font-style: italic;
+}
+
+.cta-band-sub {
+    font-family: var(--font-heading);
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 3.2rem;
+}
+
+/* Cream pill button */
+.cta-band-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--mint-pale);
+    color: var(--pine-darkest);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 1.1rem 2.5rem;
+    border-radius: 999px;
+    border: 2px solid var(--pine-darkest);
+    box-shadow: 5px 5px 0 var(--pine-darkest);
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cta-band-btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--pine-darkest);
+}
+
+/* ===================================================================
+   FOOTER
+   =================================================================== */
+
+.footer {
+    background-color: var(--pine-darkest);
+    padding: 5rem 2.5rem 2.5rem;
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.footer-main-row {
+    display: grid;
+    grid-template-columns: 1.6fr auto;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: start;
+}
+
+.footer-big-logo {
+    margin-bottom: 1.2rem;
+}
+
+.footer-logo-img {
+    height: 48px;
+    width: auto;
+    max-width: 240px;
+    object-fit: contain;
+    display: block;
+}
+
+.footer-tagline {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 440px;
+    line-height: 1.5;
+    margin-bottom: 1.8rem;
+}
+
+.footer-badge {
+    display: inline-block;
+}
+
+.footer-col-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--lime-acid);
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.footer-nav-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.footer-nav-col a,
+.footer-nav-col span {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.footer-nav-col a:hover {
+    color: var(--pink-hot);
+}
+
+.footer-bottom-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.back-to-top {
+    color: var(--lime-acid);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.15s ease;
+}
+
+.back-to-top:hover {
+    color: var(--pink-hot);
+}
+
+/* ===================================================================
+   AUDIENCE PAGES — specimen word-list rows (Timeless Type style)
+   =================================================================== */
+
+/* Compact photo hero with dark-green overlay */
+.aud-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--pine-darkest);
+}
+
+.aud-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 30%;
+    transform: scale(1.02);
+}
+
+.aud-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, rgba(19, 43, 30, 0.94) 0%, rgba(19, 43, 30, 0.82) 55%, rgba(19, 43, 30, 0.6) 100%);
+}
+
+.aud-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem 4.5rem;
+}
+
+.aud-hero-content .sec-pill {
+    margin-bottom: 2rem;
+}
+
+.aud-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.4rem, 11vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--mint-pale);
+    text-shadow: 5px 5px 0 var(--pine-darkest);
+    margin-bottom: 1.4rem;
+}
+
+.aud-hero-title em {
+    color: var(--pink-hot);
+    font-style: normal;
+}
+
+.aud-hero-star {
+    color: var(--lime-acid);
+    font-size: 0.45em;
+    vertical-align: super;
+    text-shadow: none;
+}
+
+.aud-hero-sub {
+    font-family: var(--font-heading);
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    font-weight: 500;
+    color: var(--mint-pale);
+    max-width: 680px;
+    line-height: 1.55;
+    margin-bottom: 2.2rem;
+}
+
+.title-mint {
+    color: var(--mint-pale);
+}
+
+.sec-meta-line {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--mint-bright);
+    letter-spacing: 0.08em;
+}
+
+.aud-list-section {
+    background-color: var(--pine-deep);
+    border-bottom: 2px solid var(--pine-border);
+}
+
+.aud-list {
+    border-top: 2px solid var(--pine-border);
+}
+
+.aud-row {
+    display: grid;
+    grid-template-columns: 4rem 1fr auto;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2.4rem 0;
+    border-bottom: 2px solid var(--pine-border);
+    transition: background-color 0.2s ease;
+}
+
+.aud-row-idx {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--lime-acid);
+    letter-spacing: 0.08em;
+}
+
+.aud-row-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.aud-row-word {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5.5vw, 4.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease;
+}
+
+/* Alternating specimen fills — pink / mint like the type tester list */
+.aud-row:nth-child(odd) .aud-row-word {
+    color: var(--pink-hot);
+}
+
+.aud-row:nth-child(even) .aud-row-word {
+    color: var(--mint-bright);
+}
+
+.aud-row-cap {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 620px;
+    line-height: 1.5;
+}
+
+.aud-row-glyph {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--lime-acid);
+    border-radius: 50%;
+    color: var(--lime-acid);
+    font-size: 1.7rem;
+    transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.aud-row:hover .aud-row-word {
+    transform: translateX(10px);
+}
+
+.aud-row:hover .aud-row-glyph {
+    background-color: var(--lime-acid);
+    color: var(--pine-darkest);
+    transform: rotate(20deg);
+}
+
+/* Cross-link to the other door, under the CTA button */
+.door-switch {
+    display: block;
+    margin-top: 2.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--mint-pale);
+    text-decoration: underline;
+    text-decoration-color: var(--pink-hot);
+    text-underline-offset: 5px;
+    transition: color 0.15s ease;
+}
+
+.door-switch:hover {
+    color: var(--lime-acid);
+}
+
+/* ===================================================================
+   RESPONSIVE BREAKPOINTS
+   =================================================================== */
+
+@media (max-width: 1024px) {
+    .doors-grid {
+        grid-template-columns: 1fr;
+    }
+    .actions-poster-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .why-huge-title {
+        position: static;
+    }
+    .footer-main-row {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-spec-bar {
+        display: none;
+    }
+    .nav {
+        padding: 0.9rem 1.5rem;
+    }
+    .nav-logo-img {
+        height: 32px;
+    }
+    .nav-links {
+        display: none;
+    }
+    .hero {
+        padding: 3.5rem 1.5rem 4.5rem;
+    }
+    .hero-discovery-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    .hero-clean-ctas {
+        flex-direction: column;
+        width: 100%;
+    }
+    .btn-pink-hero, .btn-mint-hero {
+        width: 100%;
+        justify-content: center;
+    }
+    .why-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    .actions-poster-grid {
+        grid-template-columns: 1fr;
+    }
+    .action-tile {
+        min-height: 0;
+    }
+    .door-card {
+        padding: 2.8rem 1.6rem 2.2rem;
+    }
+    .cta-band {
+        padding: 5rem 1.5rem 6rem;
+    }
+    .cta-stars {
+        gap: 1.8rem;
+        margin-bottom: 2.5rem;
+    }
+    .aud-hero-content {
+        padding: 2.8rem 1.5rem 3.5rem;
+    }
+    .aud-row {
+        grid-template-columns: 1fr auto;
+        gap: 1.2rem;
+        padding: 1.8rem 0;
+    }
+    .aud-row-idx {
+        display: none;
+    }
+    .aud-row-glyph {
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+    }
+    .footer-bottom-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Scroll reveal animations */
+.reveal-node {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-node.node-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
