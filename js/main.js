@@ -53,38 +53,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // ---------- Hamburger / mobile menu ----------
-    const navToggle = document.getElementById('navToggle');
+    // ---------- Hamburger / mobile nav drawer ----------
+    const burger = document.getElementById('navBurger');
     const navLinks = document.getElementById('navLinks');
 
-    if (navToggle && navLinks) {
+    if (burger && navLinks && nav) {
+        // Position the dropdown exactly under the nav, whatever its real
+        // rendered height is (differs slightly between iOS/Android chrome,
+        // font metrics and safe-area insets) — avoids a hardcoded offset
+        // that would drift on one platform but not the other.
+        const syncNavHeight = () => {
+            document.documentElement.style.setProperty('--nav-h', `${nav.offsetHeight}px`);
+        };
+        syncNavHeight();
+        window.addEventListener('resize', syncNavHeight);
+        window.addEventListener('orientationchange', syncNavHeight);
+
         const closeMenu = () => {
             navLinks.classList.remove('open');
-            navToggle.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.setAttribute('aria-label', 'Open menu');
+            burger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
         };
 
-        navToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = navLinks.classList.toggle('open');
-            navToggle.classList.toggle('open', isOpen);
-            navToggle.setAttribute('aria-expanded', String(isOpen));
-            navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        const openMenu = () => {
+            syncNavHeight();
+            navLinks.classList.add('open');
+            burger.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        };
+
+        burger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.contains('open');
+            isOpen ? closeMenu() : openMenu();
         });
 
+        // Close after tapping any link inside the drawer
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', closeMenu);
         });
 
-        document.addEventListener('click', (e) => {
-            if (navLinks.classList.contains('open') && !e.target.closest('.nav')) {
-                closeMenu();
-            }
-        });
-
+        // Close on Escape, and if the viewport grows back to desktop width
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navLinks.classList.contains('open')) closeMenu();
+            if (e.key === 'Escape') closeMenu();
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) closeMenu();
         });
     }
 

@@ -47,14 +47,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Kill Android's grey tap flash so links/buttons behave like iOS */
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
     scroll-behavior: smooth;
     background-color: var(--pine-deep);
+    /* Prevent iOS Safari from auto-inflating text on rotate,
+       which Android Chrome does not do — keeps sizing identical */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    overflow-x: clip;
 }
 
 body.poster-canvas {
@@ -64,18 +67,21 @@ body.poster-canvas {
     line-height: 1.5;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: transparent;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
-/* Normalize buttons so iOS/Android render them identically */
+/* Reset native button chrome — Android WebView and iOS Safari style
+   <button> differently by default, so every button in the design
+   system starts from the same blank slate. */
 button {
     font: inherit;
     color: inherit;
-    -webkit-appearance: none;
-    appearance: none;
     background: none;
     border: none;
-    padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
 }
 
 ::selection {
@@ -91,7 +97,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem 2.5rem;
+    padding: 0.8rem calc(2.5rem + env(safe-area-inset-right)) 0.8rem calc(2.5rem + env(safe-area-inset-left));
     background-color: var(--pine-surface);
     border-bottom: 2px solid var(--pine-border);
     font-family: var(--font-mono);
@@ -150,7 +156,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.1rem 2.5rem;
+    padding: 1.1rem calc(2.5rem + env(safe-area-inset-right)) 1.1rem calc(2.5rem + env(safe-area-inset-left));
     background-color: rgba(19, 43, 30, 0.94);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
@@ -192,7 +198,6 @@ button {
 
 .nav-logo-img {
     height: 38px;
-    width: 175px;
     max-width: 200px;
     aspect-ratio: 1240 / 270;
 }
@@ -221,47 +226,6 @@ button {
     color: var(--pink-hot);
 }
 
-/* Hamburger — hidden on desktop, shown under 768px */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 46px;
-    height: 46px;
-    background-color: var(--pine-surface);
-    border: 2px solid var(--pine-border);
-    border-radius: 10px;
-    box-shadow: 3px 3px 0 var(--pine-darkest);
-    cursor: pointer;
-}
-
-.hamburger span {
-    display: block;
-    width: 22px;
-    height: 3px;
-    background-color: var(--mint-pale);
-    border-radius: 2px;
-    transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
-}
-
-.hamburger.open span {
-    background-color: var(--lime-acid);
-}
-
-.hamburger.open span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.hamburger.open span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.open span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-
 /* Acid-lime pill CTA (the 'Say yes' button) */
 .nav-cta {
     display: inline-flex;
@@ -284,6 +248,48 @@ button {
     box-shadow: 5px 5px 0 var(--pink-hot);
     background-color: var(--pink-hot);
     color: var(--white);
+}
+
+/* Hamburger toggle — hidden on desktop, shown below the 768px breakpoint */
+.nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 2px solid var(--pine-border);
+    background-color: var(--pine-surface);
+    flex-shrink: 0;
+    touch-action: manipulation;
+}
+
+.nav-burger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: var(--mint-pale);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.nav-burger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-burger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-burger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Only visible inside the mobile dropdown, not the desktop nav-links */
+.nav-links-mobile-cta {
+    display: none;
 }
 
 /* ===================================================================
@@ -1190,7 +1196,6 @@ button {
 
 .footer-logo-img {
     height: 48px;
-    width: 220px;
     max-width: 240px;
     aspect-ratio: 1240 / 270;
 }
@@ -1603,7 +1608,6 @@ button {
     justify-content: center;
     padding: 2rem;
     background-color: rgba(11, 25, 17, 0.88);
-    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     opacity: 0;
     visibility: hidden;
@@ -1621,7 +1625,6 @@ button {
     max-width: 1080px;
     max-height: 88vh;
     overflow-y: auto;
-    overscroll-behavior: contain;
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
     background-color: var(--pine-surface);
@@ -1832,47 +1835,65 @@ button {
         display: none;
     }
     .nav {
-        padding: 0.9rem 1.5rem;
+        padding: 0.9rem calc(1.5rem + env(safe-area-inset-right)) 0.9rem calc(1.5rem + env(safe-area-inset-left));
+        gap: 0.8rem;
     }
     .nav-logo-img {
         height: 32px;
     }
-    .hamburger {
+    .nav-burger {
         display: flex;
     }
-    /* Slide-down mobile menu panel */
+    .nav-cta {
+        font-size: 0.75rem;
+        padding: 0.55rem 1rem;
+    }
+
+    /* Mobile dropdown drawer — same markup/IDs as desktop, repurposed as a panel */
     .nav-links {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: var(--nav-h, 64px);
         left: 0;
         right: 0;
-        display: flex;
+        z-index: 998;
         flex-direction: column;
+        align-items: stretch;
         gap: 0;
-        background-color: rgba(19, 43, 30, 0.98);
-        border-bottom: 3px solid var(--pink-hot);
-        padding: 0.4rem 1.5rem 1rem;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-8px);
-        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--pine-darkest);
+        border-bottom: 2px solid var(--pine-border);
+        box-shadow: 0 12px 24px rgba(11, 25, 17, 0.5);
+        transition: max-height 0.3s ease;
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: env(safe-area-inset-bottom);
     }
+
     .nav-links.open {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+        max-height: 80vh;
+        max-height: 80dvh;
+        overflow-y: auto;
     }
+
     .nav-links li {
-        border-top: 1px solid var(--pine-border);
+        border-bottom: 1px solid var(--pine-border);
     }
-    .nav-links li:first-child {
-        border-top: none;
-    }
+
     .nav-links a {
         display: block;
-        padding: 1rem 0;
+        padding: 1.1rem 1.5rem;
         font-size: 1rem;
     }
+
+    .nav-links-mobile-cta {
+        display: block;
+    }
+
+    .nav-links-mobile-cta a {
+        color: var(--lime-acid);
+    }
+
     .hero {
         padding: 3.5rem 1.5rem 4.5rem;
     }
