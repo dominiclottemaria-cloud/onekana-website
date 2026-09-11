@@ -54,6 +54,9 @@
 html {
     scroll-behavior: smooth;
     background-color: var(--pine-deep);
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     /* Prevent iOS Safari from auto-inflating text on rotate,
        which Android Chrome does not do — keeps sizing identical */
     -webkit-text-size-adjust: 100%;
@@ -65,7 +68,10 @@ body.poster-canvas {
     background-color: var(--pine-deep);
     color: var(--mint-pale);
     line-height: 1.5;
+    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -87,6 +93,41 @@ button {
 ::selection {
     background-color: var(--pink-hot);
     color: var(--white);
+}
+
+/* ===================================================================
+   SVG STAR / ASTERISK ICON (100% Identical on iOS & Android)
+   =================================================================== */
+
+.star-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1em;
+    height: 1em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3.8;
+    stroke-linecap: round;
+    flex-shrink: 0;
+}
+
+.star-hero {
+    width: 0.72em;
+    height: 0.72em;
+    vertical-align: 0.12em;
+}
+
+.star-marquee {
+    width: 0.78em;
+    height: 0.78em;
+    margin: 0 0.55em;
+    vertical-align: -0.05em;
+}
+
+.star-mini {
+    width: 0.85em;
+    height: 0.85em;
+    vertical-align: -0.06em;
 }
 
 /* ===================================================================
@@ -391,6 +432,13 @@ button {
     font-size: 1.15rem;
     line-height: 1;
     color: var(--pink-hot);
+    display: inline-flex;
+    align-items: center;
+}
+
+.discovery-star .star-icon {
+    width: 1.1rem;
+    height: 1.1rem;
 }
 
 .badge-ecosystem {
@@ -819,6 +867,13 @@ button {
     font-size: 1.05rem;
     line-height: 1.4;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.check-icon .star-icon {
+    width: 1.05rem;
+    height: 1.05rem;
 }
 
 .door-left .check-icon {
@@ -1110,10 +1165,15 @@ button {
 .cta-stars {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 4rem;
     color: rgba(217, 242, 226, 0.35);
-    font-size: 1.3rem;
     margin-bottom: 3.5rem;
+}
+
+.cta-stars .star-icon {
+    width: 1.35rem;
+    height: 1.35rem;
 }
 
 .cta-pill {
@@ -1321,9 +1381,15 @@ button {
 
 .aud-hero-star {
     color: var(--lime-acid);
-    font-size: 0.45em;
-    vertical-align: super;
+    display: inline-block;
+    vertical-align: 0.15em;
+    line-height: 1;
     text-shadow: none;
+}
+
+.aud-hero-star .star-icon {
+    width: 0.45em;
+    height: 0.45em;
 }
 
 .aud-hero-sub {
@@ -1415,8 +1481,12 @@ button {
     border: 2px solid var(--lime-acid);
     border-radius: 50%;
     color: var(--lime-acid);
-    font-size: 1.7rem;
     transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.aud-row-glyph .star-icon {
+    width: 1.8rem;
+    height: 1.8rem;
 }
 
 .aud-row:hover .aud-row-word {
@@ -1835,18 +1905,17 @@ button {
         display: none;
     }
     .nav {
-        padding: 0.9rem calc(1.5rem + env(safe-area-inset-right)) 0.9rem calc(1.5rem + env(safe-area-inset-left));
+        padding: 0.9rem calc(1.25rem + env(safe-area-inset-right)) 0.9rem calc(1.25rem + env(safe-area-inset-left));
         gap: 0.8rem;
     }
     .nav-logo-img {
-        height: 32px;
+        height: 30px;
     }
     .nav-burger {
         display: flex;
     }
     .nav-cta {
-        font-size: 0.75rem;
-        padding: 0.55rem 1rem;
+        display: none !important;
     }
 
     /* Mobile dropdown drawer — same markup/IDs as desktop, repurposed as a panel */
@@ -1894,77 +1963,446 @@ button {
         color: var(--lime-acid);
     }
 
-    .hero {
-        padding: 3.5rem 1.5rem 4.5rem;
+    .section-container {
+        padding: 3.5rem 1.25rem;
     }
+
+    .sec-label-row {
+        margin-bottom: 1.6rem;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+    }
+
+    .sec-pill {
+        font-size: 0.75rem;
+        padding: 0.5rem 1.1rem;
+    }
+
+    .hero {
+        padding: 3rem 1.25rem 3.5rem;
+        overflow: hidden;
+    }
+
+    .hero-title-row {
+        gap: 0.6rem;
+    }
+
+    .hero-title-main,
+    .hero-title-sub {
+        font-size: clamp(2.8rem, 15vw, 4.8rem);
+        line-height: 0.92;
+        letter-spacing: -0.04em;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .hero-title-deco {
+        font-size: clamp(1.8rem, 9vw, 3rem);
+        transform: translateY(-5%);
+    }
+
+    .hero-clean-sub {
+        font-size: 1.05rem;
+        line-height: 1.5;
+        margin: 1.2rem 0 1.8rem;
+    }
+
     .hero-discovery-bar {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.8rem;
+        align-items: stretch;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        width: 100%;
     }
+
+    .block-yellow-discovery {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.78rem;
+        padding: 0.65rem 0.9rem;
+        line-height: 1.4;
+    }
+
+    .badge-ecosystem {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.75rem;
+        padding: 0.65rem 0.9rem;
+        justify-content: center;
+        text-align: center;
+    }
+
     .hero-clean-ctas {
         flex-direction: column;
         width: 100%;
+        gap: 0.85rem;
     }
-    .btn-pink-hero, .btn-mint-hero {
+
+    .btn-pink-hero,
+    .btn-mint-hero {
         width: 100%;
         justify-content: center;
+        padding: 0.95rem 1.4rem;
+        font-size: 0.95rem;
+        box-sizing: border-box;
     }
+
     .why-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    .values-grid {
-        grid-template-columns: 1fr;
-    }
-    .actions-poster-grid {
-        grid-template-columns: 1fr;
-    }
-    .action-tile {
-        min-height: 0;
-    }
-    .door-card {
-        padding: 2.8rem 1.6rem 2.2rem;
-    }
-    .cta-band {
-        padding: 5rem 1.5rem 6rem;
-    }
-    .cta-stars {
-        gap: 1.8rem;
-        margin-bottom: 2.5rem;
-    }
-    .aud-hero-content {
-        padding: 2.8rem 1.5rem 3.5rem;
-    }
-    .aud-row {
-        grid-template-columns: 1fr auto;
-        gap: 1.2rem;
-        padding: 1.8rem 0;
-    }
-    .aud-row-idx {
-        display: none;
-    }
-    .aud-row-glyph {
-        width: 52px;
-        height: 52px;
-        font-size: 1.3rem;
-    }
-    .passport-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    .passport-card {
-        transform: none !important;
+
+    .why-huge-title {
+        font-size: clamp(1.85rem, 8vw, 2.6rem);
+        line-height: 1.1;
+        word-break: break-word;
+        hyphens: auto;
     }
+
+    .why-para {
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .why-callout {
+        padding: 1.35rem 1.15rem;
+        box-shadow: 4px 4px 0 var(--pine-darkest);
+    }
+
+    .why-callout p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .paths-heading {
+        font-size: clamp(1.85rem, 8vw, 2.6rem);
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+        word-break: break-word;
+    }
+
+    .paths-subheading {
+        font-size: 1rem;
+        margin-bottom: 2.8rem;
+    }
+
+    .doors-grid {
+        grid-template-columns: 1fr;
+        gap: 2.6rem;
+    }
+
+    .door-card {
+        padding: 2.4rem 1.25rem 1.8rem;
+        border-radius: 18px;
+        box-shadow: 5px 5px 0 var(--pine-darkest);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .door-badge {
+        top: -16px;
+        right: 1.2rem;
+        font-size: 1.25rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .door-title {
+        font-size: clamp(1.7rem, 7.5vw, 2.2rem);
+        margin-bottom: 1rem;
+        word-break: break-word;
+    }
+
+    .door-question {
+        font-size: 1rem;
+        margin-bottom: 1.4rem;
+        padding-left: 0.8rem;
+    }
+
+    .check-item {
+        font-size: 0.9rem;
+        padding: 0.8rem 0;
+        gap: 0.75rem;
+    }
+
+    .door-feeling {
+        font-size: 0.95rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .door-action-btn.btn-pill-dark,
+    .door-right .btn-pill-dark {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.95rem;
+        padding: 0.9rem 1.4rem;
+        box-sizing: border-box;
+    }
+
+    .actions-heading {
+        font-size: clamp(1.85rem, 8vw, 2.6rem);
+        line-height: 1.1;
+        margin-bottom: 2.4rem;
+        word-break: break-word;
+    }
+
+    .actions-poster-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .action-tile {
+        min-height: 0;
+        padding: 1.8rem 1.35rem;
+        border-radius: 16px;
+        box-shadow: 4px 4px 0 var(--pine-darkest);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .action-tile-title {
+        font-size: 1.35rem;
+    }
+
+    .action-tile-text {
+        font-size: 0.92rem;
+    }
+
+    .values-heading {
+        font-size: clamp(1.85rem, 8vw, 2.6rem);
+        line-height: 1.1;
+        margin-bottom: 2.2rem;
+        word-break: break-word;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .val-card {
+        padding: 1.6rem 1.25rem;
+        border-radius: 12px;
+        box-shadow: 4px 4px 0 var(--pine-darkest);
+    }
+
+    .val-title {
+        font-size: 1.25rem;
+    }
+
+    .val-text {
+        font-size: 0.9rem;
+    }
+
+    .manifesto-section {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .manifesto-lead {
+        font-size: 1rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .manifesto-quote {
+        font-size: clamp(1.7rem, 7.5vw, 2.6rem);
+        line-height: 1.18;
+        word-break: break-word;
+    }
+
+    .manifesto-highlight {
+        transform: none;
+        padding: 0 0.2em;
+        display: inline;
+    }
+
+    .cta-band {
+        padding: 3.5rem 1.25rem 4rem;
+    }
+
+    .cta-stars {
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .cta-stars .star-icon {
+        width: 1.1rem;
+        height: 1.1rem;
+    }
+
+    .cta-pill {
+        transform: none;
+        margin-bottom: 1.6rem;
+    }
+
+    .cta-band-title {
+        font-size: clamp(2.3rem, 10vw, 3.6rem);
+        line-height: 1;
+        text-shadow: 3px 3px 0 var(--pine-darkest);
+        margin-bottom: 1.4rem;
+        word-break: break-word;
+    }
+
+    .cta-band-sub {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .cta-band-btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        font-size: 1rem;
+        padding: 0.95rem 1.4rem;
+        box-sizing: border-box;
+    }
+
+    .aud-hero-content {
+        padding: 2.6rem 1.25rem 3rem;
+    }
+
+    .aud-hero-title {
+        font-size: clamp(2.3rem, 10vw, 3.8rem);
+        line-height: 0.95;
+        text-shadow: 3px 3px 0 var(--pine-darkest);
+        word-break: break-word;
+    }
+
+    .aud-hero-sub {
+        font-size: 1rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .aud-row {
+        grid-template-columns: 1fr auto;
+        gap: 0.85rem;
+        padding: 1.5rem 0;
+    }
+
+    .aud-row-idx {
+        display: none;
+    }
+
+    .aud-row-word {
+        font-size: clamp(1.35rem, 6.5vw, 2.2rem);
+        line-height: 1;
+        word-break: break-word;
+    }
+
+    .aud-row-cap {
+        font-size: 0.88rem;
+        line-height: 1.45;
+    }
+
+    .aud-row-glyph {
+        width: 44px;
+        height: 44px;
+    }
+
+    .aud-row-glyph .star-icon {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+
+    .passport-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+    }
+
+    .passport-card {
+        padding: 1.2rem 1.2rem 0;
+        border-radius: 20px;
+        box-shadow: 5px 5px 0 var(--pine-darkest);
+        transform: none !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .pc-name {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        word-break: break-word;
+    }
+
+    .pc-photo {
+        border-radius: 12px;
+    }
+
+    .pc-dist {
+        font-size: 0.85rem;
+    }
+
+    .pc-meta {
+        font-size: 0.68rem;
+    }
+
+    .ath-overlay {
+        padding: 0.75rem;
+    }
+
+    .ath-modal {
+        width: 100%;
+        max-height: 90dvh;
+        border-radius: 16px;
+        box-shadow: 5px 5px 0 var(--pine-darkest);
+    }
+
+    .ath-photo-col {
+        min-height: 200px;
+    }
+
+    .ath-info-col {
+        padding: 1.4rem 1.1rem 1.8rem;
+    }
+
+    .ath-name {
+        font-size: 1.7rem;
+        word-break: break-word;
+    }
+
     .ath-stats {
         grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
     }
-    .ath-info-col {
-        padding: 1.8rem 1.4rem 2.2rem;
+
+    .ath-stat {
+        padding: 0.65rem 0.75rem;
     }
+
+    .ath-cta {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .footer {
+        padding: 3.5rem 1.25rem 2rem;
+    }
+
+    .footer-main-row {
+        gap: 2.2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .footer-logo-img {
+        height: 36px;
+        max-width: 180px;
+    }
+
+    .footer-tagline {
+        font-size: 0.95rem;
+        margin-bottom: 1.4rem;
+    }
+
+    .footer-badge {
+        font-size: 0.72rem;
+        padding: 0.35rem 0.75rem;
+    }
+
     .footer-bottom-bar {
+        font-size: 0.7rem;
         flex-direction: column;
         align-items: flex-start;
+        gap: 0.8rem;
     }
 }
 
