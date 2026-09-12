@@ -121,6 +121,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ---------- Passport country filter ----------
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    const passportGrid = document.getElementById('passportGrid');
+    const filterEmpty = document.getElementById('filterEmpty');
+
+    if (filterButtons.length && passportGrid) {
+        const cards = passportGrid.querySelectorAll('.passport-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+
+                filterButtons.forEach(b => {
+                    const isActive = b === btn;
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-pressed', String(isActive));
+                });
+
+                let visibleCount = 0;
+                cards.forEach(card => {
+                    const matches = filter === 'all' || card.dataset.country === filter;
+                    card.classList.toggle('filtered-out', !matches);
+                    if (matches) visibleCount += 1;
+                });
+
+                if (filterEmpty) {
+                    filterEmpty.hidden = visibleCount !== 0;
+                }
+            });
+        });
+    }
+
     // ---------- Athlete passport modal ----------
     const ATHLETES = {
         daniel: {

@@ -1551,10 +1551,57 @@ button {
     border-bottom: 2px solid var(--pine-border);
 }
 
+/* Country filter bar */
+.passport-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-bottom: 2.5rem;
+}
+
+.filter-pill {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    border: 2px solid var(--pine-border);
+    background-color: var(--pine-surface);
+    color: var(--mint-pale);
+    box-shadow: 3px 3px 0 var(--pine-darkest);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-pill:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--pine-darkest);
+    border-color: var(--lime-acid);
+}
+
+.filter-pill.active {
+    background-color: var(--pink-hot);
+    border-color: var(--pine-darkest);
+    color: var(--white);
+}
+
+.filter-empty {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    padding: 3rem 0;
+    text-align: center;
+}
+
 .passport-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
+}
+
+/* Cards removed from the active filter are hidden entirely (no layout gap) */
+.passport-card.filtered-out {
+    display: none;
 }
 
 /* Polaroid-style card: thick colored frame, header, photo, footer strip */

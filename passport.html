@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/onekana-logo.png">
-    <link rel="stylesheet" href="css/styles.css?v=4">
+    <link rel="stylesheet" href="css/styles.css?v=5">
 </head>
 <body class="poster-canvas">
 
@@ -94,10 +94,18 @@
                 <span class="sec-meta-line">CLICK A CARD FOR THE FULL PROFILE</span>
             </div>
 
-            <div class="passport-grid">
+            <div class="passport-filter" role="group" aria-label="Filter athletes by country">
+                <button class="filter-pill active" type="button" data-filter="all" aria-pressed="true">ALL ATHLETES</button>
+                <button class="filter-pill" type="button" data-filter="kenya" aria-pressed="false">🇰🇪 KENYA</button>
+                <button class="filter-pill" type="button" data-filter="uganda" aria-pressed="false">🇺🇬 UGANDA</button>
+            </div>
+
+            <p class="filter-empty" id="filterEmpty" hidden>No athletes from this country yet — check back soon.</p>
+
+            <div class="passport-grid" id="passportGrid">
 
                 <!-- Card 01 -->
-                <button class="passport-card frame-pink tilt-l" data-athlete="daniel" aria-label="Open profile: Daniel K.">
+                <button class="passport-card frame-pink tilt-l" data-athlete="daniel" data-country="kenya" aria-label="Open profile: Daniel K.">
                     <div class="pc-head">
                         <div class="pc-head-top">
                             <span class="pc-idx">01</span>
@@ -115,7 +123,7 @@
                 </button>
 
                 <!-- Card 02 -->
-                <button class="passport-card frame-lime tilt-r" data-athlete="mercy" aria-label="Open profile: Mercy C.">
+                <button class="passport-card frame-lime tilt-r" data-athlete="mercy" data-country="uganda" aria-label="Open profile: Mercy C.">
                     <div class="pc-head">
                         <div class="pc-head-top">
                             <span class="pc-idx">02</span>
@@ -133,7 +141,7 @@
                 </button>
 
                 <!-- Card 03 -->
-                <button class="passport-card frame-mint tilt-l" data-athlete="samuel" aria-label="Open profile: Samuel K.">
+                <button class="passport-card frame-mint tilt-l" data-athlete="samuel" data-country="kenya" aria-label="Open profile: Samuel K.">
                     <div class="pc-head">
                         <div class="pc-head-top">
                             <span class="pc-idx">03</span>
@@ -151,7 +159,7 @@
                 </button>
 
                 <!-- Card 04 -->
-                <button class="passport-card frame-soft tilt-r" data-athlete="faith" aria-label="Open profile: Faith N.">
+                <button class="passport-card frame-soft tilt-r" data-athlete="faith" data-country="uganda" aria-label="Open profile: Faith N.">
                     <div class="pc-head">
                         <div class="pc-head-top">
                             <span class="pc-idx">04</span>
@@ -169,7 +177,7 @@
                 </button>
 
                 <!-- Card 05 -->
-                <button class="passport-card frame-pine tilt-l" data-athlete="vincent" aria-label="Open profile: Vincent K.">
+                <button class="passport-card frame-pine tilt-l" data-athlete="vincent" data-country="kenya" aria-label="Open profile: Vincent K.">
                     <div class="pc-head">
                         <div class="pc-head-top">
                             <span class="pc-idx">05</span>
@@ -187,7 +195,7 @@
                 </button>
 
                 <!-- Card 06 -->
-                <button class="passport-card frame-pink tilt-r" data-athlete="joyce" aria-label="Open profile: Joyce A.">
+                <button class="passport-card frame-pink tilt-r" data-athlete="joyce" data-country="uganda" aria-label="Open profile: Joyce A.">
                     <div class="pc-head">
                         <div class="pc-head-top">
                             <span class="pc-idx">06</span>
@@ -330,6 +338,6 @@
         </div>
     </div>
 
-    <script src="js/main.js?v=4"></script>
+    <script src="js/main.js?v=5"></script>
 </body>
 </html>
