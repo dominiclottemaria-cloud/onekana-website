@@ -11,18 +11,19 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# CSS/JS must always revalidate with the server on each deploy — a blind
-# max-age here caused stale cached styles to be paired with fresh HTML
-# after a deploy (e.g. hero text rendering behind the hero image because
-# the visitor's browser was still using yesterday's cached stylesheet).
-# no-cache still lets the browser use a 304 to skip re-downloading when
-# the file truly hasn't changed, so this doesn't hurt load times.
+# CSS/JS are referenced with a ?v= version query string in every HTML file
+# (e.g. css/styles.css?v=3). That query string IS the cache key, so it is
+# safe — and fastest — to cache these aggressively: a browser that already
+# has ?v=3 cached keeps using it instantly, and any browser still holding
+# an old ?v=2 (or no query string) is forced to fetch a brand-new URL the
+# moment the HTML changes, regardless of how long the old response was
+# cached for. Bump the ?v= number in the HTML files whenever CSS/JS changes.
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "no-cache"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "no-cache"
+    Cache-Control = "public, max-age=31536000, immutable"

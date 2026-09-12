@@ -341,8 +341,19 @@ button {
     padding: 5rem 2.5rem 6.5rem;
     position: relative;
     overflow: hidden;
+    /* Forces a brand-new, self-contained stacking context for everything
+       inside the hero, so the photo (z-index:0), overlay (z-index:1) and
+       text (z-index:2) below can NEVER be reordered by z-index rules
+       defined elsewhere on the page, however the cascade resolves. */
+    isolation: isolate;
     border-bottom: 2px solid var(--pine-border);
     background-color: var(--pine-deep);
+}
+
+/* Background photo — explicit z-index so paint order never depends on
+   DOM/source order alone. */
+.hero > .aud-hero-bg {
+    z-index: 0;
 }
 
 /* Dark-green overlay + accent glows sitting above the photo, below the text */
@@ -355,12 +366,9 @@ button {
                 linear-gradient(100deg, rgba(19, 43, 30, 0.95) 0%, rgba(19, 43, 30, 0.88) 55%, rgba(19, 43, 30, 0.72) 100%);
 }
 
-.hero .hero-container {
+.hero-container {
     position: relative;
     z-index: 2;
-}
-
-.hero-container {
     max-width: 1160px;
     margin: 0 auto;
 }
@@ -1348,12 +1356,14 @@ button {
 .aud-hero {
     position: relative;
     overflow: hidden;
+    isolation: isolate;
     border-bottom: 2px solid var(--pine-darkest);
 }
 
 .aud-hero-bg {
     position: absolute;
     inset: 0;
+    z-index: 0;
     background-size: cover;
     background-position: center 30%;
     transform: scale(1.02);
@@ -1362,6 +1372,7 @@ button {
 .aud-hero-overlay {
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: linear-gradient(100deg, rgba(19, 43, 30, 0.94) 0%, rgba(19, 43, 30, 0.82) 55%, rgba(19, 43, 30, 0.6) 100%);
 }
 
